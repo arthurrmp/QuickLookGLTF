@@ -94,7 +94,7 @@ window.loadModel = function(url) {
     document.getElementById('loading')?.remove();
 
     if (typeof window.customScript === 'function') {
-      window.customScript({ scene, camera, renderer, controls, gltf, THREE });
+      try { window.customScript({ scene, camera, renderer, controls, gltf, mixer, THREE }); } catch(e) { console.error('Custom script error:', e); }
     }
   }, undefined, (error) => {
     const el = document.getElementById('loading');

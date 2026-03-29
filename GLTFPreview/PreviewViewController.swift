@@ -144,7 +144,7 @@ class PreviewViewController: NSViewController, QLPreviewingController, WKNavigat
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         var js = ""
         if let script = customScript {
-            js += "window.customScript = function(ctx) { const { scene, camera, renderer, controls, gltf, THREE } = ctx; \(script) };\n"
+            js += "window.customScript = function(ctx) { const { scene, camera, renderer, controls, gltf, mixer, THREE } = ctx;\n\(script)\n};\n"
         }
         let ext = schemeHandler.modelFileURL?.pathExtension.lowercased() == "gltf" ? "gltf" : "glb"
         js += "loadModel('\(customScheme)://resources/model.\(ext)')"

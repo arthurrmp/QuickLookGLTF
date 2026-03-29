@@ -26,6 +26,25 @@ targets:
     platform: macOS
     sources:
       - GLTFPreview
+    preBuildScripts:
+      - name: Bundle JavaScript
+        script: |
+          cd "$SRCROOT"
+          if [ ! -d node_modules ]; then
+            npm install
+          fi
+          npm run build
+        inputFiles:
+          - $(SRCROOT)/src/entry.js
+          - $(SRCROOT)/scripts/copy-decoders.js
+          - $(SRCROOT)/package.json
+          - $(SRCROOT)/package-lock.json
+        outputFiles:
+          - $(SRCROOT)/GLTFPreview/bundle.js
+          - $(SRCROOT)/GLTFPreview/basis_transcoder.js
+          - $(SRCROOT)/GLTFPreview/basis_transcoder.wasm
+          - $(SRCROOT)/GLTFPreview/draco_decoder.wasm
+          - $(SRCROOT)/GLTFPreview/draco_wasm_wrapper.js
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.arthurrmp.QuickLookGLTF.GLTFPreview
       INFOPLIST_FILE: GLTFPreview/Info.plist
