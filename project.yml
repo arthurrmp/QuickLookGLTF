@@ -1,0 +1,38 @@
+name: QuickLookGLTF
+options:
+  deploymentTarget:
+    macOS: "13.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+settings:
+  SWIFT_VERSION: "5.9"
+  MACOSX_DEPLOYMENT_TARGET: "13.0"
+targets:
+  QuickLookGLTF:
+    type: application
+    platform: macOS
+    sources:
+      - QuickLookGLTF
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.arthurrmp.QuickLookGLTF
+      INFOPLIST_FILE: QuickLookGLTF/Info.plist
+      CODE_SIGN_ENTITLEMENTS: QuickLookGLTF/QuickLookGLTF.entitlements
+      CODE_SIGN_IDENTITY: "-"
+      COMBINE_HIDPI_IMAGES: true
+    dependencies:
+      - target: GLTFPreview
+  GLTFPreview:
+    type: app-extension
+    platform: macOS
+    sources:
+      - GLTFPreview
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.arthurrmp.QuickLookGLTF.GLTFPreview
+      INFOPLIST_FILE: GLTFPreview/Info.plist
+      CODE_SIGN_ENTITLEMENTS: GLTFPreview/GLTFPreview.entitlements
+      CODE_SIGN_IDENTITY: "-"
+      SKIP_INSTALL: true
+      LD_RUNPATH_SEARCH_PATHS:
+        - "$(inherited)"
+        - "@executable_path/../Frameworks"
+        - "@executable_path/../../../../Frameworks"
