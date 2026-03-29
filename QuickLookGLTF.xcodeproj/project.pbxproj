@@ -114,6 +114,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A7C92A152D205E0BAE003F5 /* Build configuration list for PBXNativeTarget "GLTFPreview" */;
 			buildPhases = (
+				288B02652D712A572926D461 /* Bundle JavaScript */,
 				74594D1D30AA86D7FD822996 /* Sources */,
 				956403F70C08BC903FC3C6A9 /* Resources */,
 			);
@@ -191,6 +192,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		288B02652D712A572926D461 /* Bundle JavaScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/src/entry.js",
+				"$(SRCROOT)/scripts/copy-decoders.js",
+				"$(SRCROOT)/package.json",
+				"$(SRCROOT)/package-lock.json",
+			);
+			name = "Bundle JavaScript";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/GLTFPreview/bundle.js",
+				"$(SRCROOT)/GLTFPreview/basis_transcoder.js",
+				"$(SRCROOT)/GLTFPreview/basis_transcoder.wasm",
+				"$(SRCROOT)/GLTFPreview/draco_decoder.wasm",
+				"$(SRCROOT)/GLTFPreview/draco_wasm_wrapper.js",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT\"\nif [ ! -d node_modules ]; then\n  npm install\nfi\nnpm run build\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		35C28593F2C11767855D234C /* Sources */ = {
