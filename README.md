@@ -1,12 +1,17 @@
 # QuickLookGLTF
 
-A macOS Quick Look extension for previewing `.glb` and `.gltf` 3D model files. Press Space in Finder to preview.
+<table>
+<tr>
+<td width="450">
+<a href="demo.png"><img src="demo.png" width="450"></a>
+</td>
+<td valign="top">
 
-Built with [Three.js](https://threejs.org) running inside a WKWebView. Models load instantly thanks to Three.js's optimized glTF parser and GPU-accelerated rendering. Supports PBR materials, animations, and compressed formats (Draco, KTX2, Meshopt).
+**A macOS Quick Look extension for previewing `.glb` and `.gltf` 3D model files.**
 
-![Demo](demo.png)
+Built with [Three.js](https://threejs.org) running inside a WKWebView. Models load instantly thanks to Three.js's optimized glTF parser and GPU-accelerated rendering.
 
-## Features
+<small>
 
 - Preview `.glb` and `.gltf` files with Quick Look (press Space in Finder)
 - Orbit, zoom, and pan with mouse/trackpad
@@ -14,6 +19,12 @@ Built with [Three.js](https://threejs.org) running inside a WKWebView. Models lo
 - Supports Draco, KTX2, and Meshopt compressed models
 - Auto-frames the camera to fit the model
 - Extensible via [custom scripts](#custom-scripts)
+
+</small>
+
+</td>
+</tr>
+</table>
 
 ## Install
 
@@ -30,12 +41,17 @@ brew install arthurrmp/tap/quicklookgltf
 
 ### After installing
 
-1. Open `QuickLookGLTF.app` once to register the extension
+1. Open `QuickLookGLTF.app` from `/Applications` once to register the extension
 2. Press Space on any `.glb` or `.gltf` file in Finder
 
-If Quick Look isn't working, check that the extension is enabled in System Settings:
+<details>
+<summary>Quick Look not working?</summary>
+
+Check that the extension is enabled in System Settings:
 - **macOS 15+:** General > Login Items & Extensions > scroll to Extensions > click the info button next to QuickLookGLTF > enable Quick Look
 - **macOS 13 and 14:** Privacy & Security > Extensions > Quick Look > enable QuickLookGLTF
+
+</details>
 
 ## Custom Scripts
 
