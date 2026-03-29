@@ -73,6 +73,10 @@ window.loadModel = function(url) {
     const fov = camera.fov * (Math.PI / 180);
     const dist = (maxDim / (2 * Math.tan(fov / 2))) * 1.5;
 
+    camera.near = dist * 0.01;
+    camera.far = dist * 10;
+    camera.updateProjectionMatrix();
+
     camera.position.set(
       center.x + dist * 0.5,
       center.y + dist * 0.3,
