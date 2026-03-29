@@ -13,6 +13,7 @@
 		28DD3705B26500A1736DC698 /* basis_transcoder.js in Resources */ = {isa = PBXBuildFile; fileRef = A213BEEFA858D0BE32A4DB35 /* basis_transcoder.js */; };
 		A5F8E7845F76CF3BE126C368 /* viewer.html in Resources */ = {isa = PBXBuildFile; fileRef = C478723D3633BAE37C027278 /* viewer.html */; };
 		BA671564B093D1E307690D7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296DACF2DD6B58D3DD3FD7A /* AppDelegate.swift */; };
+		AABB000000000000000000CC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000000000000000000DD /* main.swift */; };
 		C289D06BE5DD67044E25AF22 /* draco_wasm_wrapper.js in Resources */ = {isa = PBXBuildFile; fileRef = 61CFA236EEF618856E42F43C /* draco_wasm_wrapper.js */; };
 		C686F50B2D4AF30E29D60589 /* basis_transcoder.wasm in Resources */ = {isa = PBXBuildFile; fileRef = 9D8FD2C2AC263746E9299234 /* basis_transcoder.wasm */; };
 		E69A6766239C57C9D5FDB3E9 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73BD60F8A2535E2DB88854B /* PreviewViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		2353AFCED8ED51606AABB568 /* GLTFPreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GLTFPreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3296DACF2DD6B58D3DD3FD7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AABB000000000000000000DD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		61CFA236EEF618856E42F43C /* draco_wasm_wrapper.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = draco_wasm_wrapper.js; sourceTree = "<group>"; };
 		7C525DD3573AC99C536EB43E /* QuickLookGLTF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickLookGLTF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		830551754E874A8A6F6AB7B3 /* QuickLookGLTF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickLookGLTF.entitlements; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				3296DACF2DD6B58D3DD3FD7A /* AppDelegate.swift */,
+				AABB000000000000000000DD /* main.swift */,
 				830551754E874A8A6F6AB7B3 /* QuickLookGLTF.entitlements */,
 				A173978C11DB20350D1415B1 /* Info.plist */,
 			);
@@ -203,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA671564B093D1E307690D7C /* AppDelegate.swift in Sources */,
+				AABB000000000000000000CC /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

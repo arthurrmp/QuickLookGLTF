@@ -3,3 +3,8 @@ node_modules/
 xcuserdata/
 DerivedData/
 .DS_Store
+GLTFPreview/bundle.js
+GLTFPreview/basis_transcoder.js
+GLTFPreview/basis_transcoder.wasm
+GLTFPreview/draco_decoder.wasm
+GLTFPreview/draco_wasm_wrapper.js

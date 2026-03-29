@@ -109,6 +109,13 @@ class PreviewViewController: NSViewController, QLPreviewingController, WKNavigat
     private var webView: WKWebView!
     private var schemeHandler: ResourceSchemeHandler!
     private var previewHandler: ((Error?) -> Void)?
+    private var customScript: String?
+
+    private static let customScriptURL: URL? = {
+        guard let pw = getpwuid(getuid()) else { return nil }
+        let home = URL(fileURLWithPath: String(cString: pw.pointee.pw_dir))
+        return home.appendingPathComponent(".config/quicklookgltf/custom.js")
+    }()
 
     override func loadView() {
         let config = WKWebViewConfiguration()
@@ -126,13 +133,22 @@ class PreviewViewController: NSViewController, QLPreviewingController, WKNavigat
             schemeHandler.preloadGLTFResources(for: url)
         }
 
+        if let url = Self.customScriptURL {
+            customScript = try? String(contentsOf: url, encoding: .utf8)
+        }
+
         previewHandler = handler
         webView.load(URLRequest(url: URL(string: "\(customScheme)://resources/viewer.html")!))
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        var js = ""
+        if let script = customScript {
+            js += "window.customScript = function(ctx) { const { scene, camera, renderer, controls, gltf, THREE } = ctx; \(script) };\n"
+        }
         let ext = schemeHandler.modelFileURL?.pathExtension.lowercased() == "gltf" ? "gltf" : "glb"
-        webView.evaluateJavaScript("loadModel('\(customScheme)://resources/model.\(ext)')") { [weak self] _, error in
+        js += "loadModel('\(customScheme)://resources/model.\(ext)')"
+        webView.evaluateJavaScript(js) { [weak self] _, error in
             self?.previewHandler?(error)
             self?.previewHandler = nil
         }

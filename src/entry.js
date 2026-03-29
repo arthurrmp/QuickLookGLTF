@@ -88,6 +88,10 @@ window.loadModel = function(url) {
     }
 
     document.getElementById('loading')?.remove();
+
+    if (typeof window.customScript === 'function') {
+      window.customScript({ scene, camera, renderer, controls, gltf, THREE });
+    }
   }, undefined, (error) => {
     const el = document.getElementById('loading');
     if (el) el.textContent = 'Error: ' + error.message;
