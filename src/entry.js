@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x2a2a2a);
@@ -12,19 +13,17 @@ const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerH
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 0.75;
 document.body.appendChild(renderer.domElement);
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-
-const dir1 = new THREE.DirectionalLight(0xffffff, 1.2);
-dir1.position.set(5, 10, 7);
-scene.add(dir1);
-
-const dir2 = new THREE.DirectionalLight(0xffffff, 0.4);
-dir2.position.set(-5, 5, -5);
-scene.add(dir2);
-
-scene.add(new THREE.HemisphereLight(0xb1e1ff, 0xb97a20, 0.3));
+{
+  const pmremGenerator = new THREE.PMREMGenerator(renderer);
+  const envScene = new RoomEnvironment();
+  scene.environment = pmremGenerator.fromScene(envScene).texture;
+  envScene.dispose();
+  pmremGenerator.dispose();
+}
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
